@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  vaultwarden:
+    restart: always
+    container_name: vaultwarden                       # CONTAINER NAME
+    image: vaultwarden/server:latest
+    volumes:
+      - ./vw-data/:/data/                             # VOLUME TO STORE DATA
+    ports:
+      - 8066:80                                       # PORT
+    environment:
+      - SMTP_HOST=mail.smtp2go.com                     # SMTP SERVER
+      - SMTP_FROM=vault@mail.bhatol.com                # SMTP MAIL
+      - SMTP_FROM_NAME=VaultWarden                     # SMTP USER NAME
+      - SMTP_SECURITY=starttls
+      - SMTP_PORT=0000                                 # SMTP PORT
+      - SMTP_USERNAME=EXAMPLE@mail.bhatol.com          # SMTP MAIL
+      - SMTP_PASSWORD=password                         # SMTP MAIL PASSOWRD
+      - SMTP_TIMEOUT=30
+      - SMTP_AUTH_MECHANISM="Plain"
+      - LOGIN_RATELIMIT_MAX_BURST=10
+      - LOGIN_RATELIMIT_SECONDS=60
+      - DOMAIN=https://vault.bhatol.com                    # url
+      - INVITATION_ORG_NAME="Vaultwarden"                  # VAULT NAME
+      - INVITATIONS_ALLOWED=true
+      - ADMIN_TOKEN=EXAMPLETOKEN3432                       # ADD TOKEN
+      - SIGNUPS_ALLOWED=false                              # SIGNUP FOR OTHER USER
+      - SIGNUPS_DOMAINS_WHITELIST=bhatol.com               # DOMAINS WHICH ALLOW TO SIGNUP
+      - SIGNUPS_VERIFY=true
+      - SIGNUPS_VERIFY_RESEND_TIME=3600
+      - SIGNUPS_VERIFY_RESEND_LIMIT=6
+      - EMERGENCY_ACCESS_ALLOWED=true
+      - SENDS_ALLOWED=true
+      - WEB_VAULT_ENABLED=true
