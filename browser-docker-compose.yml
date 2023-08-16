@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  chrome:        # container name
+      ports:
+          - '6901:6901'
+      environment:
+          - VNC_PW=kaushal
+      shm_size: '512m'
+      image: 'kasmweb/chrome:1.13.0'    # browser name chrome, firefox, chromium, edge, brave
